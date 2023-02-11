@@ -1,6 +1,7 @@
 import { LitElement, html,css } from "lit-element";
+import { PageViewElement } from "./pages-view-element";
 
-export class ViewHome extends LitElement {
+export class ViewHome extends PageViewElement {
   static styles = css`
     :host {
       display: block;

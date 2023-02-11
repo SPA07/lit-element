@@ -1,6 +1,7 @@
 import { LitElement, html, css } from "lit";
 import './views/view-home';
 import './views/view-about';
+import './views/view-contact';
 
 class PwaLive extends LitElement {
   static get styles() {
@@ -13,6 +14,14 @@ class PwaLive extends LitElement {
       h1 {
         font-weight: 200px;
         font-family: "Montserrat", sans-serif;
+      }
+
+      .page {
+        display: none;
+      }
+
+      .page[active] {
+        display: block
       }
     `;
   }
@@ -34,11 +43,12 @@ class PwaLive extends LitElement {
       <nav>
         <a href="#" @click="${this.go}" name="home">Home</a>
         <a href="#" @click="${this.go}" name="about">About</a>
-        <a href="#">Contact</a>
+        <a href="#" @click="${this.go}" name="contact">Contact</a>
       </nav>
       <main>
-        ${this.selected == "home" ? html` <view-home texto="algo"></view-home> ` : ""}
-        ${this.selected == "about" ? html` <view-about></view-about> ` : ""}
+        <view-home texto="algo" class="page" ?active="${this.selected == 'home'}"></view-home>
+        <view-about class="page" ?active=${this.selected == 'about'}></view-about>
+        <view-contact class="page" ?active=${this.selected == 'contact'}></view-contact>
       </main>
     `;
   }

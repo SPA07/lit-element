@@ -1,6 +1,7 @@
 import { LitElement, html, css } from "lit-element";
+import { PageViewElement } from "./pages-view-element";
 
-export class ViewAbout extends LitElement {
+export class ViewAbout extends PageViewElement {
   static styles = css`
     :host {
       display: block;
@@ -18,6 +19,7 @@ export class ViewAbout extends LitElement {
         voluptatum eos ex fugiat velit! Atque perferendis aliquid neque
         dignissimos inventore!
       </p>
+      <img src="https://picsum.photos/300/200" alt="image">
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos
         autem necessitatibus hic repellendus dolores facere, maiores corrupti
@@ -36,7 +38,6 @@ export class ViewAbout extends LitElement {
         doloremque ad mollitia, magnam dolore delectus inventore optio odit non.
         Illo, dolore.
       </p>
-      <img src="../images/kitty-g393d0de6c_1280.jpg" alt="cat-image" />
     `;
   }
 }
