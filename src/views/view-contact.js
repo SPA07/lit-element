@@ -10,7 +10,9 @@ export class ViewContact extends PageViewElement {
   `;
 
   render() {
-    return html``;
+    return html`
+    <h1>Contacto</h1>
+    `;
   }
 }
 customElements.define('view-contact', ViewContact);

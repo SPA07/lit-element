@@ -1,13 +1,15 @@
 import { LitElement, html, css } from "lit";
-import './views/view-home';
-import './views/view-about';
-import './views/view-contact';
+import "./views/view-home";
+import "./views/view-about";
+import "./views/view-contact";
+import "dile-tabs/dile-tabs";
+import "dile-pages/dile-pages";
 
 class PwaLive extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: bloc;
+        display: block;
         padding: 15px;
       }
 
@@ -21,7 +23,7 @@ class PwaLive extends LitElement {
       }
 
       .page[active] {
-        display: block
+        display: block;
       }
     `;
   }
@@ -40,23 +42,37 @@ class PwaLive extends LitElement {
   render() {
     return html`
       <h1>My app</h1>
-      <nav>
+      <!-- <nav>
         <a href="#" @click="${this.go}" name="home">Home</a>
         <a href="#" @click="${this.go}" name="about">About</a>
         <a href="#" @click="${this.go}" name="contact">Contact</a>
-      </nav>
-      <main>
-        <view-home texto="algo" class="page" ?active="${this.selected == 'home'}"></view-home>
-        <view-about class="page" ?active=${this.selected == 'about'}></view-about>
-        <view-contact class="page" ?active=${this.selected == 'contact'}></view-contact>
-      </main>
+      </nav> -->
+      <dile-tabs
+        selected="${this.selected}"
+        attrForSelected="name"
+        @dile-tabs-selected-changed=${this.selectedChange}
+      >
+        <dile-tab name="home">Home</dile-tab>
+        <dile-tab name="about">About</dile-tab>
+        <dile-tab name="contact">Contact me</dile-tab>
+      </dile-tabs>
+
+      <dile-pages selected="${this.selected}" attrForSelected="name" º>
+        <view-home name="home" ?active="${this.selected == "home"}"></view-home>
+        <view-about
+          name="about"
+          ?active=${this.selected == "about"}
+        ></view-about>
+        <view-contact
+          name="contact"
+          ?active=${this.selected == "contact"}
+        ></view-contact>
+      </dile-pages>
     `;
   }
 
-  go(e) {
-    e.preventDefault();
-    let page = e.target.getAttribute("name");
-    this.selected = page;
+  selectedChange(e) {
+    this.selected = e.detail;
   }
 }
 
